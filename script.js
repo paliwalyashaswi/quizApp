@@ -30,6 +30,25 @@ let correctAnswer = "",
     askedCount = 0;
 let totalQuestion;
 
+// On Submit : Event Listeners 
+function eventListeners() {
+    _nextQusBtn.addEventListener("click", OnClickNext);
+    _playAgainBtn.addEventListener("click", restartQuiz);
+    _submitBtn.addEventListener("click", submitAnswer);
+}
+
+// On Submit Events
+registrationform[0].addEventListener("submit", function (event) {
+    event.preventDefault();
+    loadQuestion();
+    eventListeners();
+    registrationform[0].classList.add("hide");
+    quizcontainer[0].classList.remove("hide");
+    quizcontainer[0].classList.add("show");
+    _totalQuestion.textContent = totalQuestion;
+    _correctScore.textContent = correctScore;
+});
+
 
 // load question from API
 async function loadQuestion() {
@@ -59,35 +78,10 @@ async function loadQuestion() {
     } catch (error) {
         console.log(error)
     }
-    // const data = await result.json();
-    // const data = result;
-    // console.log(data)
-    // _result.innerHTML = "";
-    // showQuestion(data.results[0]);
 }
-
-// On Submit : Event Listeners 
-function eventListeners() {
-    _nextQusBtn.addEventListener("click", OnClickNext);
-    _playAgainBtn.addEventListener("click", restartQuiz);
-    _submitBtn.addEventListener("click", submitAnswer);
-}
-
-// On Submit Events
-registrationform[0].addEventListener("submit", function (event) {
-    event.preventDefault();
-    loadQuestion();
-    eventListeners();
-    registrationform[0].classList.add("hide");
-    quizcontainer[0].classList.remove("hide");
-    quizcontainer[0].classList.add("show");
-    _totalQuestion.textContent = totalQuestion;
-    _correctScore.textContent = correctScore;
-});
 
 // Load Questions 1st Time + Rest Of Time When Next Ques Btn is Clicked
 function showQuestion(data) {
-    // eventListeners();
     _nextQusBtn.disabled = false;
     correctAnswer = data.correct_answer;
     let incorrectAnswer = data.incorrect_answers;
@@ -112,30 +106,7 @@ ${optionsList
 
 }
 
-// options selection
-function selectOption() {
-    _options.querySelectorAll("li").forEach(function (option) {
-        option.addEventListener("click", function () {
-            if (_options.querySelector(".selected")) {
-                const activeOption = _options.querySelector(".selected");
-                activeOption.classList.remove("selected");
-            }
-            option.classList.add("selected");
-        });
-    });
-}
-
-//yeh timer k liye function dala hai
-function timer() {
-    var sec = 20;
-    var timer = setInterval(function () {
-        document.getElementById('safeTimerDisplay').innerHTML = '00:' + sec;
-        sec--;
-        if (sec < 0) {
-            clearInterval(timer);
-        }
-    }, 1000);
-}
+var isSubmitted = false;
 
 // Series of event to follow when submitting an Answer
 function submitAnswer() {
@@ -151,32 +122,62 @@ function submitAnswer() {
         } else {
             _result.innerHTML = `<p><i class = "fas fa-times"></i>Incorrect Answer!</p> <small><b>Correct Answer: </b>${correctAnswer}</small>`;
         }
+        isSubmitted = true;
     } else {
         _result.innerHTML = `<p><i class = "fas fa-question"></i>Please select an option!</p>`;
         _submitBtn.disabled = false;
     }
 }
 
-
-
 // Next Qus Btn Operations
 function OnClickNext() {
-    askedCount++;
-    setCount();
-    if (askedCount == totalQuestion) {
-        setTimeout(function () {
-            console.log("");
-        }, 5000);
+    if (isSubmitted) {
+        askedCount++;
+        setCount();
+        if (askedCount == totalQuestion) {
+            setTimeout(function () {
+                console.log("");
+            }, 5000);
 
-        _result.innerHTML += `<p>Your score is ${correctScore}.</p>`;
-        _playAgainBtn.style.display = "block";
-        _nextQusBtn.style.display = "none";
-    } else {
-        setTimeout(function () {
-            _result.innerHTML = ''
-            showQuestion(data.results[askedCount])
-        }, 300);
+            _result.innerHTML += `<p>Your score is ${correctScore}.</p>`;
+            _playAgainBtn.style.display = "block";
+            _nextQusBtn.style.display = "none";
+        } else {
+            setTimeout(function () {
+                _result.innerHTML = ''
+                showQuestion(data.results[askedCount])
+            }, 300);
+        }
+
     }
+    else {
+        _result.innerHTML = `<p><i class = "fas fa-question"></i>Please submit an answer first.</p>`;
+    }
+}
+
+// options selection
+function selectOption() {
+    _options.querySelectorAll("li").forEach(function (option) {
+        option.addEventListener("click", function () {
+            if (_options.querySelector(".selected")) {
+                const activeOption = _options.querySelector(".selected");
+                activeOption.classList.remove("selected");
+            }
+            option.classList.add("selected");
+        });
+    });
+}
+
+// Events -> Timer
+function timer() {
+    var sec = 20;
+    var timer = setInterval(function () {
+        document.getElementById('safeTimerDisplay').innerHTML = '00:' + sec;
+        sec--;
+        if (sec < 0) {
+            clearInterval(timer);
+        }
+    }, 1000);
 }
 
 function setCount() {
