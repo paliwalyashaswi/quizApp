@@ -47,14 +47,18 @@ body {
 #QuizAppHeader {
     text-align: center;
     margin-bottom: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     font-weight: 500;
+    color: rgb(195, 4, 195);
+    border: 5px solid var(--grey-color);
+
     /* border-bottom: 3px solid rgb(195, 4, 195); */
 }
 
 h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    border-bottom: 3px solid rgb(195, 4, 195);
 }
 
 form label {
@@ -82,15 +86,20 @@ form input[type="number"] {
 form button {
     width: 100%;
     padding: 10px;
+    font-size: 15px;
+    font-weight: 600;
     background-color: rgb(195, 4, 195);
+    box-shadow: 0 4px 0 0 #6c4298;
     color: #fff;
     border: none;
     border-radius: 3px;
     cursor: pointer;
+    transition: var(--transition);
 }
 
 form button:hover {
-    background-color: #20ab04;
+    background-color: #C621F3;
+    color: var(--dark-color);
 }
 
 .wrapper {
@@ -108,19 +117,57 @@ form button:hover {
     text-align: center;
     font-size: 2rem;
     color: black;
+    border-bottom: 3px solid rgb(195, 4, 195);
+}
+
+.quiz-items-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+
 }
 
 .quiz-score {
-    text-align: left;
-    font-weight: 600;
+    text-align: center;
+    /* font-weight: 600; */
     font-size: 1.2rem;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     border: 5px solid var(--grey-color);
     font-weight: bold;
     width: 100px;
-    height: 50px;
+    height: auto;
     margin: .5rem auto 1rem auto;
     color: rgb(195, 4, 195);
+}
+
+.card {
+    /* margin: 0 auto;
+    padding: 15px;
+    display: block;
+    
+    text-align: center;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 10px -5px #909090; */
+
+    text-align: center;
+    /* font-weight: 600; */
+    font-size: 1.2rem;
+    /* margin-bottom: 1rem; */
+    border: 5px solid var(--grey-color);
+    font-weight: bold;
+    width: 100px;
+    height: auto;
+    margin: .5rem auto 1rem auto;
+    color: rgb(195, 4, 195);
+}
+
+#countdown {
+  font-size: 48px;
 }
 
 .quiz-question {
@@ -133,11 +180,14 @@ form button:hover {
 .quiz-question .category {
     font-size: 0.9rem;
     font-weight: 500;
-    background-color: var(--light-purple-color);
+    /* background-color: rgb(195, 4, 195); */
     color: var(--light-color);
+    color: rgb(195, 4, 195);
+    border: 2px solid var(--grey-color);
     padding: .2rem .4rem;
     border-radius: .2rem;
     margin-top: 0.5rem;
+    margin-bottom: 5px;
     display: inline-block;
 }
 
@@ -152,8 +202,8 @@ form button:hover {
     margin: .7rem 0;
     padding: .4rem 1.2rem;
     cursor: pointer;
-    border: 3px solid var(--light-purple-color);
-    background-color: var(--light-purple-color);
+    border: 3px solid rgb(195, 4, 195);
+    background-color: rgb(195, 4, 195);
     color: var(--light-color);
     box-shadow: 0 4px 0 0 #6c4298;
     transition: var(--transition);
@@ -178,28 +228,36 @@ form button:hover {
     box-shadow: 0 4px 0 0 #bbbbbb !important;
 }
 
+.quiz-foot {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .quiz-foot button {
     border: none;
     border-radius: 0.5rem;
     outline: 0;
     font-family: 'Poppins', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
     padding: .5rem 1rem;
     margin: 0 auto 0 auto;
     text-transform: uppercase;
     cursor: pointer;
     display: block;
-    background-color: var(--grey-color);
+    background-color: rgb(195, 4, 195);
     color: var(--dark-color);
     letter-spacing: 2px;
     transition: var(--transition);
     box-shadow: 0 4px 0 0 #bbbbbb;
+    box-shadow: 0 4px 0 0 #6c4298;
+
 }
 
 .quiz-foot button:hover {
-    background-color: #e6e6e6;
-    box-shadow: 0 4px 0 0 #a7a7a7;
+    background-color: #C621F3;
+    color: var(--dark-color);
 }
 
 .quiz-foot button:active {
@@ -250,17 +308,3 @@ form button:hover {
     }
 }
 
-.card {
-    margin: 0 auto;
-    padding: 15px;
-    display: block;
-    
-    text-align: center;
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 10px 10px -5px #909090;
-}
-
-#countdown {
-  font-size: 48px;
-}

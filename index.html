@@ -13,7 +13,7 @@
 
     <div class="wrapper">
         <div class="registration-form">
-            <h1 id="QuizAppHeader">Quiz App</h1>
+            <h1 id="QuizAppHeader">QUIZ-APP</h1>
             <h2>User Registration</h2>
             <form>
 
@@ -22,18 +22,18 @@
                 <input type="text" id="email" placeholder="Enter your Email here" pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
                     title="Invalid email address" required>
 
-                <div>Select Category</div>
-                <input type="checkbox" id="nature" name="category" value="17">
+                <div>Category:</div>
+                <input type="radio" id="nature" name="category" value="17">
                 <label for="nature">Science and Nature</label><br>
-                <input type="checkbox" id="computers" name="category" value="18">
+                <input type="radio" id="computers" name="category" value="18">
                 <label for="computers">Science: Computers</label><br>
-                <input type="checkbox" id="maths" name="category" value="19">
+                <input type="radio" id="maths" name="category" value="19">
                 <label for="maths">Science: Mathematics</label> <br>
-                <input type="checkbox" id="gadgets" name="category" value="30">
+                <input type="radio" id="gadgets" name="category" value="30">
                 <label for="gadgets">Science: Gadgets</label><br><br>
 
                 <label for="number-question">Number of Questions:</label><br>
-                <input type="number" id="number-question" placeholder="Enter Number of Questions" min="3"><br>
+                <input type="number" id="number-question" placeholder="Enter Number of Questions" min="5"><br>
 
                 <label for="difficulty">Difficulty:</label>
                 <select id="difficulty" required>
@@ -48,8 +48,8 @@
         <div class="quiz-container hide">
             <div class="quiz-head">
                 <h1 class="quiz-title">Quiz Questions</h1>
-                <div class="quiz-score flex">
-                    <div>
+                <div class="quiz-items-container">
+                    <div class="quiz-score flex">
                         <span id="correct-score"></span>/<span id="total-question"></span>
                     </div>
                     <div class="card" id="timer-element">

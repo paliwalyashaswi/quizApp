@@ -83,7 +83,7 @@ async function loadQuestion() {
         console.log('data', data)
         _correctScore.textContent = 1;
         timerElement.style.display = 'unset';
-        startTimer(1000); // 4 minutes in seconds
+        startTimer(20); // 4 minutes in seconds
 
 
     } catch (error) {
@@ -94,6 +94,8 @@ async function loadQuestion() {
 // Load Questions 1st Time + Rest Of Time When Next Ques Btn is Clicked
 function showQuestion(data) {
     _nextQusBtn.disabled = false;
+    // _result.style.display = "none";
+    // _resultScore.style.display = "none";
     correctAnswer = data.correct_answer;
     let incorrectAnswer = data.incorrect_answers;
     let optionsList = incorrectAnswer;
@@ -164,7 +166,7 @@ function OnClickNext() {
             // c(quizBody[0])
         } else if (askedCount == (totalQuestion - 1)) {
             clearInterval(timer);
-            startTimer(1000)
+            startTimer(20)
             _result.innerHTML = ''
             showQuestion(data.results[askedCount])
             _nextQusBtn.innerText = 'Check Your Score'
@@ -172,7 +174,7 @@ function OnClickNext() {
         else {
             // setTimeout(function () {
             clearInterval(timer);
-            startTimer(1000)
+            startTimer(20)
             _result.innerHTML = ''
             showQuestion(data.results[askedCount])
             // }, 300);
