@@ -210,14 +210,14 @@ form button:hover {
     display: none;
 }
 
-#result {
+#result , #result-score {
     padding: .7rem 0;
     text-align: center;
     font-weight: 600;
     font-size: 1.3rem;
 }
 
-#result i {
+#result i, #result-score i {
     width: 30px;
     height: 30px;
     border-radius: 50%;

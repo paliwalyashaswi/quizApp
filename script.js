@@ -1,13 +1,18 @@
+const c = (x) => { console.log(x) }
+
 const _question = document.getElementById('question');
 const _options = document.querySelector('.quiz-options');
 const _nextQusBtn = document.getElementById('next-question');
 const _submitBtn = document.getElementById('submit-answer');
 const _playAgainBtn = document.getElementById('play-again');
 const _result = document.getElementById('result');
+const _resultScore = document.getElementById('result-score');
 const _correctScore = document.getElementById('correct-score');
 const _totalQuestion = document.getElementById('total-question');
 const registrationform = document.getElementsByClassName("registration-form");
 const quizcontainer = document.getElementsByClassName("quiz-container");
+const quizBody = document.getElementsByClassName('quiz-body')
+const quizHead = document.getElementsByClassName('quiz-head')
 
 var numberOfQuestions = document.getElementById("number-question");
 var level = document.getElementById("difficulty");
@@ -134,19 +139,27 @@ function OnClickNext() {
     if (isSubmitted) {
         askedCount++;
         setCount();
-        if (askedCount == totalQuestion) {
-            setTimeout(function () {
-                console.log("");
-            }, 5000);
+        if (askedCount >= totalQuestion) {
+            // setTimeout(function () {
+            //     console.log("");
+            // }, 5000);
 
-            _result.innerHTML += `<p>Your score is ${correctScore}.</p>`;
+            _resultScore.innerHTML += `<p>Your score is ${correctScore}.</p>`;
             _playAgainBtn.style.display = "block";
             _nextQusBtn.style.display = "none";
-        } else {
-            setTimeout(function () {
-                _result.innerHTML = ''
-                showQuestion(data.results[askedCount])
-            }, 300);
+            quizBody[0].style.display = 'none';
+            quizHead[0].style.display = 'none';
+            // c(quizBody[0])
+        } else if (askedCount == (totalQuestion - 1)) {
+            _nextQusBtn.innerText = 'Check Your Score'
+        }
+
+        else {
+            // setTimeout(function () {
+            _result.innerHTML = ''
+            showQuestion(data.results[askedCount])
+            // }, 300);
+            isSubmitted = false;
         }
 
     }
