@@ -14,7 +14,6 @@ var level = document.getElementById("difficulty");
 var questionCategory = "";
 
 var data;
-_submitBtn.addEventListener("click", submitAnswer);
 
 const checkbox = document.getElementsByName('category');
 
@@ -67,12 +66,14 @@ async function loadQuestion() {
     // showQuestion(data.results[0]);
 }
 
-// event listeners
+// On Submit : Event Listeners 
 function eventListeners() {
-    _nextQusBtn.addEventListener("click", checkCount);
+    _nextQusBtn.addEventListener("click", OnClickNext);
     _playAgainBtn.addEventListener("click", restartQuiz);
+    _submitBtn.addEventListener("click", submitAnswer);
 }
 
+// On Submit Events
 registrationform[0].addEventListener("submit", function (event) {
     event.preventDefault();
     loadQuestion();
@@ -84,9 +85,9 @@ registrationform[0].addEventListener("submit", function (event) {
     _correctScore.textContent = correctScore;
 });
 
-// display question and options
+// Load Questions 1st Time + Rest Of Time When Next Ques Btn is Clicked
 function showQuestion(data) {
-    eventListeners();
+    // eventListeners();
     _nextQusBtn.disabled = false;
     correctAnswer = data.correct_answer;
     let incorrectAnswer = data.incorrect_answers;
@@ -96,7 +97,6 @@ function showQuestion(data) {
         0,
         correctAnswer
     );
-    // console.log(correctAnswer);
 
     _question.innerHTML = `${data.question} <br> <span class = "category"> ${data.category} </span>`;
     _options.innerHTML = `
@@ -124,6 +124,7 @@ function selectOption() {
         });
     });
 }
+
 //yeh timer k liye function dala hai
 function timer() {
     var sec = 20;
@@ -136,7 +137,7 @@ function timer() {
     }, 1000);
 }
 
-// answer checking
+// Series of event to follow when submitting an Answer
 function submitAnswer() {
     // eventListeners()
     // _submitBtn.disabled = true;
@@ -150,21 +151,16 @@ function submitAnswer() {
         } else {
             _result.innerHTML = `<p><i class = "fas fa-times"></i>Incorrect Answer!</p> <small><b>Correct Answer: </b>${correctAnswer}</small>`;
         }
-        // checkCount();
     } else {
         _result.innerHTML = `<p><i class = "fas fa-question"></i>Please select an option!</p>`;
         _submitBtn.disabled = false;
     }
 }
 
-// to convert html entities into normal text of correct answer if there is any
-function HTMLDecode(textString) {
-    let doc = new DOMParser().parseFromString(textString, "text/html");
-    return doc.documentElement.textContent;
-}
+
 
 // Next Qus Btn Operations
-function checkCount() {
+function OnClickNext() {
     askedCount++;
     setCount();
     if (askedCount == totalQuestion) {
@@ -177,8 +173,6 @@ function checkCount() {
         _nextQusBtn.style.display = "none";
     } else {
         setTimeout(function () {
-            // loadQuestion();
-            // _question.innerHTML = `${data.results[askedCount].question} <br> <span class = "category"> ${data.category} </span>`;
             _result.innerHTML = ''
             showQuestion(data.results[askedCount])
         }, 300);
@@ -198,3 +192,9 @@ function restartQuiz() {
     setCount();
     loadQuestion();
 }
+
+// to convert html entities into normal text of correct answer if there is any
+// function HTMLDecode(textString) {
+//     let doc = new DOMParser().parseFromString(textString, "text/html");
+//     return doc.documentElement.textContent;
+// }
