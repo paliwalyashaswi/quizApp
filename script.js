@@ -14,6 +14,9 @@ const quizcontainer = document.getElementsByClassName("quiz-container");
 const quizBody = document.getElementsByClassName('quiz-body')
 const quizHead = document.getElementsByClassName('quiz-head')
 
+const timerElement = document.getElementById("timer-element");
+timerElement.style.display = 'none';
+
 var numberOfQuestions = document.getElementById("number-question");
 var level = document.getElementById("difficulty");
 var questionCategory = "";
@@ -79,6 +82,9 @@ async function loadQuestion() {
         console.log('results', result)
         console.log('data', data)
         _correctScore.textContent = 1;
+        timerElement.style.display = 'unset';
+        startTimer(3); // 4 minutes in seconds
+
 
     } catch (error) {
         console.log(error)
@@ -138,7 +144,9 @@ function submitAnswer() {
 function OnClickNext() {
     if (isSubmitted) {
         askedCount++;
+        c(askedCount)
         setCount();
+
         if (askedCount >= totalQuestion) {
             // setTimeout(function () {
             //     console.log("");
@@ -149,13 +157,22 @@ function OnClickNext() {
             _nextQusBtn.style.display = "none";
             quizBody[0].style.display = 'none';
             quizHead[0].style.display = 'none';
+            _submitBtn.style.display = 'none';
+            timerElement.style.display = 'none';
+
+
             // c(quizBody[0])
         } else if (askedCount == (totalQuestion - 1)) {
+            clearInterval(timer);
+            startTimer(3)
+            _result.innerHTML = ''
+            showQuestion(data.results[askedCount])
             _nextQusBtn.innerText = 'Check Your Score'
         }
-
         else {
             // setTimeout(function () {
+            clearInterval(timer);
+            startTimer(3)
             _result.innerHTML = ''
             showQuestion(data.results[askedCount])
             // }, 300);
@@ -212,3 +229,41 @@ function restartQuiz() {
 //     let doc = new DOMParser().parseFromString(textString, "text/html");
 //     return doc.documentElement.textContent;
 // }
+
+var timeInSecs;
+var ticker;
+
+function startTimer(secs) {
+    timeInSecs = parseInt(secs);
+    ticker = setInterval("tick()", 1000);
+}
+
+function tick() {
+    var secs = timeInSecs;
+    if (askedCount >= totalQuestion) {
+
+    }
+    else {
+
+        if (secs > 0) {
+            timeInSecs--;
+        }
+        else {
+            clearInterval(ticker);
+            // startTimer(5 * 60); // 4 minutes in seconds
+            isSubmitted = true;
+            OnClickNext()
+        }
+
+        var mins = Math.floor(secs / 60);
+        secs %= 60;
+        var pretty = ((mins < 10) ? "0" : "") + mins + ":" + ((secs < 10) ? "0" : "") + secs;
+
+        timerElement.innerHTML = pretty;
+    }
+
+}
+
+// startTimer(5 * 60); // 4 minutes in seconds
+
+//Credits to Gulzaib from Pakistan
