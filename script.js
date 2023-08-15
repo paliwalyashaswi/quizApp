@@ -83,7 +83,7 @@ async function loadQuestion() {
         console.log('data', data)
         _correctScore.textContent = 1;
         timerElement.style.display = 'unset';
-        startTimer(3); // 4 minutes in seconds
+        startTimer(1000); // 4 minutes in seconds
 
 
     } catch (error) {
@@ -164,7 +164,7 @@ function OnClickNext() {
             // c(quizBody[0])
         } else if (askedCount == (totalQuestion - 1)) {
             clearInterval(timer);
-            startTimer(3)
+            startTimer(1000)
             _result.innerHTML = ''
             showQuestion(data.results[askedCount])
             _nextQusBtn.innerText = 'Check Your Score'
@@ -172,7 +172,7 @@ function OnClickNext() {
         else {
             // setTimeout(function () {
             clearInterval(timer);
-            startTimer(3)
+            startTimer(1000)
             _result.innerHTML = ''
             showQuestion(data.results[askedCount])
             // }, 300);

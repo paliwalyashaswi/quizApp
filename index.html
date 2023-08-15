@@ -49,12 +49,16 @@
             <div class="quiz-head">
                 <h1 class="quiz-title">Quiz Questions</h1>
                 <div class="quiz-score flex">
-                    <span id="correct-score"></span>/<span id="total-question"></span>
+                    <div>
+                        <span id="correct-score"></span>/<span id="total-question"></span>
+                    </div>
+                    <div class="card" id="timer-element">
+                        <span id="countdown" style="font-weight: bold;"></span>
+                    </div>
                 </div>
             </div>
             <div class="quiz-body">
                 <h2 class="quiz-question" id="question"><!--What is the full form of HTTP? --></h2>
-                <div id="timer"></div>
                 <ul class="quiz-options">
                     <!-- <li>1. Hyper text transfer package</li>
 <li>2. Hyper text transfer protocol</li>
@@ -70,16 +74,13 @@
             <div class="quiz-foot">
                 <button type="button" id="submit-answer">Submit Answer</button>
                 <button type="button" id="next-question">Go to Next Question</button>
-                <button onclick="javascript:location.reload(true)" type="button" id="play-again">Start Quiz Again!</button>
+                <button onclick="javascript:location.reload(true)" type="button" id="play-again">Start Quiz
+                    Again!</button>
             </div>
         </div>
-        <div class="card" id="timer-element">
-            <span id="countdown" style="font-weight: bold;"></span>
-        </div>
+
 
     </div>
-
-
 
     <script src="script.js"></script>
 </body>
