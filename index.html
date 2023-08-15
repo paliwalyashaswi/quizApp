@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <title>Quiz Game - API Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="flex">
+
+    <div class="wrapper">
+        <div class="registration-form">
+            <h1 id="QuizAppHeader">Quiz App</h1>
+            <h2>User Registration</h2>
+            <form>
+
+                <input type="text" id="user-name" placeholder="Enter your UserName here" required>
+
+                <input type="text" id="email" placeholder="Enter your Email here" pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                    title="Invalid email address" required>
+
+                <div>Select Category</div>
+                <input type="checkbox" id="nature" name="category" value="17">
+                <label for="nature">Science and Nature</label><br>
+                <input type="checkbox" id="computers" name="category" value="18">
+                <label for="computers">Science: Computers</label><br>
+                <input type="checkbox" id="maths" name="category" value="19">
+                <label for="maths">Science: Mathematics</label> <br>
+                <input type="checkbox" id="gadgets" name="category" value="30">
+                <label for="gadgets">Science: Gadgets</label><br><br>
+
+                <label for="number-question">Number of Questions:</label><br>
+                <input type="number" id="number-question" placeholder="Enter Number of Questions" min="5"><br>
+
+                <label for="difficulty">Difficulty:</label>
+                <select id="difficulty" required>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+
+                <button type="submit">Start Quiz Now!</button>
+            </form>
+        </div>
+        <div class="quiz-container hide">
+            <div class="quiz-head">
+                <h1 class="quiz-title">Quiz Questions</h1>
+                <div class="quiz-score flex">
+                    <span id="correct-score"></span>/<span id="total-question"></span>
+                </div>
+            </div>
+            <div class="quiz-body">
+                <h2 class="quiz-question" id="question"><!--What is the full form of HTTP? --></h2>
+                <div id="timer"></div>
+                <ul class="quiz-options">
+                    <!-- <li>1. Hyper text transfer package</li>
+<li>2. Hyper text transfer protocol</li>
+<li>3. Hyphenation text test program</li>
+<li>4. None of the above</li> -->
+                </ul>
+                <div id="result">
+                </div>
+            </div>
+            <div class="quiz-foot">
+                <button type="button" id="submit-answer">Submit Answer</button>
+                <button type="button" id="next-question">Go to Next Question</button>
+                <button type="button" id="play-again">Start Quiz Again!</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
