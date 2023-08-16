@@ -266,5 +266,3 @@ function tick() {
 }
 
 // startTimer(5 * 60); // 4 minutes in seconds
-
-//Credits to Gulzaib from Pakistan
